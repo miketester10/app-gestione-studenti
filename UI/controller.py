@@ -7,9 +7,11 @@ class Controller:
         # the model, which implements the logic of the program and holds the data
         self._model = model
 
-    def get_corsi(self):
-        return self._model.get_corsi()
-    
+    def fill_ddCorso(self):
+        corsi = self._model.get_corsi()
+        for corso in corsi:
+            self._view._ddCorso.options.append(ft.dropdown.Option(key=corso.codins, text=corso.__str__()))
+
     def handle_get_iscritti_by_codins(self, e):
         self.__clear()
         iscritti = self._model.get_iscritti_by_codins(self.__getCodins())

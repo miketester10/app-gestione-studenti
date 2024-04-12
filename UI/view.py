@@ -23,8 +23,8 @@ class View(ft.UserControl):
 
         # Row 1
         self._ddCorso = ft.Dropdown(label="Corso",width=650)
-        self._fillDdCorso()
-        self._btnCercaIscritti = ft.ElevatedButton(text="Cerca iscritti", on_click=self.controller.handle_get_iscritti_by_codins)
+        self._controller.fill_ddCorso()
+        self._btnCercaIscritti = ft.ElevatedButton(text="Cerca iscritti", on_click=self._controller.handle_get_iscritti_by_codins)
         
         row1 = ft.Row([self._ddCorso, self._btnCercaIscritti],
                       alignment=ft.MainAxisAlignment.CENTER)
@@ -34,14 +34,13 @@ class View(ft.UserControl):
         self._txtNome = ft.TextField(label="Nome",width=300, read_only=True)
         self._txtCognome = ft.TextField(label="Cognome",width=300, read_only=True)
         
-
         row2 = ft.Row([self._txtMatricola, self._txtNome, self._txtCognome],
                       alignment=ft.MainAxisAlignment.CENTER)
 
         # Row 3
-        self._btnCercaStudente = ft.ElevatedButton(text="Cerca studente", on_click=self.controller.handle_get_studente_by_matricola)
-        self._btnCercaCorsi = ft.ElevatedButton(text="Cerca corsi", on_click=self.controller.handle_get_corsi_by_matricola)
-        self._btnIscrivi = ft.ElevatedButton(text="Iscrivi studente", on_click=self.controller.handle_iscrivi_studente)
+        self._btnCercaStudente = ft.ElevatedButton(text="Cerca studente", on_click=self._controller.handle_get_studente_by_matricola)
+        self._btnCercaCorsi = ft.ElevatedButton(text="Cerca corsi", on_click=self._controller.handle_get_corsi_by_matricola)
+        self._btnIscrivi = ft.ElevatedButton(text="Iscrivi studente", on_click=self._controller.handle_iscrivi_studente)
 
         row3 = ft.Row([self._btnCercaStudente, self._btnCercaCorsi, self._btnIscrivi],
                       alignment=ft.MainAxisAlignment.CENTER)
@@ -52,25 +51,12 @@ class View(ft.UserControl):
         self._page.add(row0, row1, row2, row3, self._txt_result)
         self.update()
 
-    @property
-    def controller(self):
-        return self._controller
-
-    @controller.setter
-    def controller(self, controller):
-        self._controller = controller
-
     def set_controller(self, controller):
         self._controller = controller
 
     def update(self):
         self._page.update()
 
-    def _fillDdCorso(self):
-        corsi = self.controller.get_corsi()
-        for corso in corsi:
-            self._ddCorso.options.append(ft.dropdown.Option(key=corso.codins, text=corso.__str__()))
-    
     def theme_changed(self, e):
         """Function that changes the color theme of the app, when the corresponding
         switch is triggered"""
