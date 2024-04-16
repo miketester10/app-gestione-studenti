@@ -9,8 +9,20 @@ class View(ft.UserControl):
         self._page.title = "App Gestione Studenti"
         self._page.horizontal_alignment = 'CENTER'
         self._page.theme_mode = ft.ThemeMode.DARK
-        # controller (it is not initialized. Must be initialized in the main, after the controller is created)
-        self._controller = None
+        self._controller = None # controller (it is not initialized. Must be initialized in the main, after the controller is created)
+        # graphical elements
+        self._title = None
+        self.__theme_switch = None
+        self._ddCorso = None
+        self._btnCercaIscritti = None
+        self._txtMatricola = None
+        self._txtNome = None
+        self._txtCognome = None
+        self._btnCercaStudente = None
+        self._btnCercaCorsi = None
+        self._btnIscrivi = None
+        self._txt_result = None
+
 
     def load_interface(self):
         """Function that loads the graphical elements of the view"""
