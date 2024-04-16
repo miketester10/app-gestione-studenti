@@ -10,7 +10,7 @@ class Controller:
     def fill_ddCorso(self):
         corsi = self._model.get_corsi()
         for corso in corsi:
-            self._view._ddCorso.options.append(ft.dropdown.Option(key=corso.codins, text=corso.__str__()))
+            self._view._ddCorso.options.append(ft.dropdown.Option(key=corso.codins, text=corso))
 
     def handle_get_iscritti_by_codins(self, e):
         self.__clear()
