@@ -27,7 +27,7 @@ class DBConnect:
                     option_files = './database/connector.cnf'
                 )
                 print('Conessione a MySQL avvenuta con successo. Richiedo una connessione alla pool..')
-                return cls._cnxPool.get_connection() # questo get_connection() non è il metodo della classe DBConnect ma il metodo della classe MySQLConnectionPool per ottenere la connessione
+                return cls._cnxPool.get_connection() # questo get_connection() non è il metodo della classe DBConnect ma il metodo della classe MySQLConnectionPool per ottenere la connessione dalla pool.
             except mysql.connector.Error as err:
                 if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
                     print("Something is wrong with your user name or password")
@@ -40,7 +40,7 @@ class DBConnect:
                     return None
         else:
             print('Richiedo una connessione alla pool..')
-            return cls._cnxPool.get_connection()
+            return cls._cnxPool.get_connection() # questo get_connection() non è il metodo della classe DBConnect ma il metodo della classe MySQLConnectionPool per ottenere la connessione dalla pool.
 
 
 
